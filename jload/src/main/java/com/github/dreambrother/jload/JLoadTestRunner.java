@@ -20,9 +20,12 @@ public class JLoadTestRunner {
     private static final File TEST_FOLDER = new File("src/test/java");
     
     private final JLoadTestScanner scanner = new JLoadTestScanner();
-    private final JLoadTestPrinter printer = new JLoadTestPrinter();
+    private final JLoadTestFormatter formatter = new JLoadTestFormatter();
 
-    public void run() {
+    /**
+     * @return formatted test execution result
+     */
+    public String run() {
         final List<String> tests = scanner.findAllTests(TEST_FOLDER);
         List<JLoadTestResult> result = new LinkedList<>();
         for (String test : tests) {
@@ -41,7 +44,7 @@ public class JLoadTestRunner {
                 throw new TestExecutionException(ex);
             }
         }
-        printer.print(result);
+        return formatter.print(result);
     }
     
     private JLoadTestResult executeTestMethod(Object testInstance, Method testMethod, long iterationCount, 
