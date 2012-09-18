@@ -1,4 +1,4 @@
-package com.github.dreambrother.javalibloadtesting;
+package com.github.dreambrother.jload;
 
 import com.github.dreambrother.jload.annotations.LoadTest;
 
@@ -9,7 +9,7 @@ import com.github.dreambrother.jload.annotations.LoadTest;
 public class TestLTCase {
 
     @LoadTest(iterationCount = 10, threadCount = 1)
-    public void loadTest() throws InterruptedException {
+    public void loadTest1() throws InterruptedException {
         Thread.sleep(100L);
     }
     

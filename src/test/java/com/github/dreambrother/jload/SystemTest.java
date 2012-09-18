@@ -1,4 +1,4 @@
-package com.github.dreambrother.javalibloadtesting;
+package com.github.dreambrother.jload;
 
 import com.github.dreambrother.jload.JLoadTestRunner;
 import org.junit.Test;
