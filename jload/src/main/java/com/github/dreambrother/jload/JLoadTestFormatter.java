@@ -13,7 +13,7 @@ public class JLoadTestFormatter {
         for (JLoadTestResult jLoadTestResult : testResults) {
             result.append(jLoadTestResult.getTestName())
                     .append("\n")
-                    .append(String.format("Iterations: %d, execution time: %d", 
+                    .append(String.format("Iterations: %d, execution time: %d ms", 
                         jLoadTestResult.getExecutionCount(), jLoadTestResult.getExecutionTime()))
                     .append("\n")
                     .append("Operations/sec: ")
