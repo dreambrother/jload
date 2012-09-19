@@ -26,11 +26,18 @@ public class JLoadTestRunner {
      * @return formatted test execution result
      */
     public String run() {
+        return run(null);
+    }
+
+    /**
+     * @return formatted test execution result
+     */
+    public String run(ClassLoader classLoader) {
         final List<String> tests = scanner.findAllTests(TEST_FOLDER);
         List<JLoadTestResult> result = new LinkedList<>();
         for (String test : tests) {
             try {
-                Class<?> testClass = Class.forName(test);
+                Class<?> testClass = classLoader != null ? classLoader.loadClass(test)  : Class.forName(test);
                 Object testInstance = testClass.newInstance();
                 Method[] methods = testClass.getMethods();
                 for (Method method : methods) {
@@ -44,7 +51,7 @@ public class JLoadTestRunner {
                 throw new TestExecutionException(ex);
             }
         }
-        return formatter.print(result);
+        return formatter.format(result);
     }
     
     private JLoadTestResult executeTestMethod(Object testInstance, Method testMethod, long iterationCount, 

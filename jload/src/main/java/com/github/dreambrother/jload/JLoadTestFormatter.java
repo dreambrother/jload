@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class JLoadTestFormatter {
 
-    public String print(List<JLoadTestResult> testResults) {
+    public String format(List<JLoadTestResult> testResults) {
         final StringBuilder result = new StringBuilder("Load tests execution result: \n");
         for (JLoadTestResult jLoadTestResult : testResults) {
             result.append(jLoadTestResult.getTestName())
