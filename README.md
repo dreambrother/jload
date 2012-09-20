@@ -5,9 +5,9 @@ Java libraries load testing framework
 
 Test your java library (or just code unit!) with only one annotation!  
 To use the framework, You just need to:  
-*   Create test class with *LTCase suffix
-*   Add @LoadTest annotaion to your test method
-*   Add jload-maven-plugin to your Maven project and execute: mvn clean package jload:test  
+*   Create test class with `*LTCase` suffix
+*   Add `@LoadTest` annotaion to your test method
+*   Add `jload-maven-plugin` to your Maven project and execute: `mvn clean package jload:test`  
 
 Usage example:
 ```java
@@ -48,4 +48,4 @@ Output example:
     Operations/sec: 3.3300033
     Average iteration time: 300.299988 ms.
 
-At this moment, plugin has not been loaded to the Maven Central Repository. You need to download the source code and execute mvn clean install at the root of the project.
+At this moment, plugin has not been loaded to the Maven Central Repository. You need to download the source code and execute `mvn clean install` at the root of the project.
