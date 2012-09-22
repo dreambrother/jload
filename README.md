@@ -1,9 +1,9 @@
 jLoad
 =====
-Java libraries load testing framework
+Load testing framework written in Java
 -------------------------------------
 
-Test your java library (or just code unit!) with only one annotation!  
+Test your application (or library) with only one annotation!  
 To use the framework, You just need to:  
 *   Create test class with `*LTCase` suffix
 *   Add `@LoadTest` annotaion to your test method
