@@ -52,11 +52,13 @@ Dependency declaration:
     </dependency>
 </dependencies>
 
-<plugin>
-    <groupId>com.github.dreambrother</groupId>
-    <artifactId>jload-maven-plugin</artifactId>
-    <version>1.0</version>
-</plugin>
+<build>
+    <plugin>
+        <groupId>com.github.dreambrother</groupId>
+        <artifactId>jload-maven-plugin</artifactId>
+        <version>1.0</version>
+    </plugin>
+</build>
 ```
 Output example:
 
