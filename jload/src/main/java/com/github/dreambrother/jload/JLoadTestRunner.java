@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  *
@@ -66,6 +68,7 @@ public class JLoadTestRunner {
             throw new IllegalArgumentException("Iteration count cannot be lesser than 1. Given: " + iterationCount);
         }
         
+        String testName = testMethod.getDeclaringClass().getCanonicalName() + "." + testMethod.getName();
         ExecutorService threadPool = Executors.newFixedThreadPool(threadCount);
         TestTask task = new TestTask(testInstance, testMethod, iterationCount / threadCount);
         TestTask lastTask = new TestTask(testInstance, testMethod, 
@@ -78,14 +81,23 @@ public class JLoadTestRunner {
         futures.add(threadPool.submit(lastTask));
         for (Future<?> future : futures) {
             try {
-                future.get();
+                if (timeout > 0) {
+                    future.get(timeout, TimeUnit.MILLISECONDS);
+                } else {
+                    future.get();
+                }
+            } catch (TimeoutException ex) {
+                throw new TestExecutionException(getTimeoutMessage(testName));
             } catch (Exception ex) {
                 throw new TestExecutionException(ex);
             }
         }
         long endTime = System.nanoTime();
-        return new JLoadTestResult(testMethod.getDeclaringClass().getCanonicalName() + "." + testMethod.getName(), 
-                iterationCount, (endTime - startTime) / 1_000_000);
+        long executionTime = (endTime - startTime) / 1_000_000;
+        if (timeout > 0 && executionTime > timeout) {
+            throw new TestExecutionException(getTimeoutMessage(testName));
+        } 
+        return new JLoadTestResult(testName, iterationCount, executionTime);
     }
     
     private static final class TestTask implements Runnable {
@@ -110,5 +122,9 @@ public class JLoadTestRunner {
                 }
             }
         }
+    }
+    
+    private String getTimeoutMessage(String testName) {
+        return "Timeout in " + testName;
     }
 }
