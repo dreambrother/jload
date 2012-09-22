@@ -55,7 +55,7 @@ Dependency declaration:
 <plugin>
     <groupId>com.github.dreambrother</groupId>
     <artifactId>jload-maven-plugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 </plugin>
 ```
 Output example:
