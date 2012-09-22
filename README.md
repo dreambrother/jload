@@ -29,6 +29,29 @@ public class AppLTCase {
 
 Plugin dependency declaration:
 ```xml
+<repositories>
+    <repository>
+        <id>dreambrother-mvn-repo</id>
+        <url>https://raw.github.com/dreambrother/dreambrother-mvn-repo/master/releases</url>
+    </repository>
+</repositories>
+
+<pluginRepositories>
+    <pluginRepository>
+        <id>dreambrother-mvn-repo</id>
+        <url>https://raw.github.com/dreambrother/dreambrother-mvn-repo/master/releases</url>
+    </pluginRepository>
+</pluginRepositories>
+
+<dependencies>
+    <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jload</artifactId>
+        <version>1.0</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
 <plugin>
     <groupId>com.github.dreambrother</groupId>
     <artifactId>jload-maven-plugin</artifactId>
@@ -47,5 +70,3 @@ Output example:
     Iterations: 10, execution time: 3003 ms
     Operations/sec: 3.3300033
     Average iteration time: 300.299988 ms.
-
-At this moment, plugin has not been loaded to the Maven Central Repository. You need to download the source code and execute `mvn clean install` at the root of the project.
