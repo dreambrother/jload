@@ -45,7 +45,7 @@ Dependency declaration:
 
 <dependencies>
     <dependency>
-        <groupId>${project.groupId}</groupId>
+        <groupId>com.github.dreambrother</groupId>
         <artifactId>jload</artifactId>
         <version>1.0</version>
         <scope>test</scope>
