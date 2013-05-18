@@ -72,3 +72,6 @@ Output example:
     Iterations: 10, execution time: 3003 ms
     Operations/sec: 3.3300033
     Average iteration time: 300.299988 ms.
+
+License:
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
